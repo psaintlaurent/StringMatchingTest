@@ -6,22 +6,22 @@ from fuzzywuzzy import fuzz, process
 #FuzzyWuzzy is slow, use sequencematcher to pare down results 
 def sq_pare(needle='default', fn='/usr/share/dict/words', pth=.50):
 	with open(fn, 'r') as fh:
-		sq_haystack = {line 
+		sq_haystack = {line.lower()
 				for line in fh 
-				if difflib.SequenceMatcher(None, needle, line).ratio() - pth >= 0.0}
+				if difflib.SequenceMatcher(None, needle, line.lower()).ratio() - pth >= 0.0}
 	return sq_haystack
 
 #FuzzyWuzzy is slow, use Ngram approximation to pare down results
 def ng_pare(needle='default', fn='/usr/share/dict/words', pth=.50):
 	with open(fn, 'r') as fh:
-        	ng_haystack = {line
+        	ng_haystack = {line.lower()
                         	for line in fh
-                        	if NGram.compare(needle, line, N=1) - pth >= 0.0}
+                        	if NGram.compare(needle, line.lower(), N=1) - pth >= 0.0}
 	return ng_haystack
 
 inp = sys.argv[1:]
 rgx = re.compile('[\W_]+')
-search_str, pare_type, pare_th, filename = rgx.sub('', inp[0]), inp[1], .50, '/usr/share/dict/words'
+search_str, pare_type, pare_th, filename = rgx.sub('', inp[0]).lower(), inp[1], .50, '/usr/share/dict/words'
 
 if len(inp) == 3:
 	pare_th = float(inp[2]) #That's right I'm not validating my inputs before casting, it's a test, sue me
