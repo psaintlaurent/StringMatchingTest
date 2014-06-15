@@ -1,0 +1,12 @@
+This is a test of FuzzyWuzzy's string matching capabilities.  
+FuzzyWuzzy is pretty slow so there are two types of paring optimizations that can be used via commandline:
+	- Sequence Matching (sq_pare)
+	- Ngram string comparison (ng_pare)
+
+
+To use this test run the following
+
+python StringMatchTest.py <search_string> <pare_strategy> <pare_threshold>
+
+Example:
+python StringMatchTest.py "zymoi #123" sq_pare .7
