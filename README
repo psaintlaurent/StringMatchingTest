@@ -1,5 +1,5 @@
 This is a test of FuzzyWuzzy's string matching capabilities.  
-FuzzyWuzzy is pretty slow so there are two types of paring optimizations that can be used via commandline:
+FuzzyWuzzy is pretty slow so there are two types of paring optimizations that can be used via commandline to limit the number of strings processed by FuzzyWuzzy:
 	- Sequence Matching (sq_pare)
 	- Ngram string comparison (ng_pare)
 
